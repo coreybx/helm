@@ -35,6 +35,10 @@ spec:
       {{- with .Values.server.service.servicePortHttpsAppProtocol }}
       appProtocol: {{ . }}
       {{- end }}
+    - name: radius
+      port: 1812
+      targetPort: 1812
+      protocol: UDP
   selector:
     {{- include "authentik.selectorLabels" (dict "context" . "component" .Values.server.name) | nindent 4 }}
   {{- if eq .Values.server.service.type "LoadBalancer" }}

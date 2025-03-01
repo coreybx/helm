@@ -108,6 +108,10 @@ spec:
             - name: metrics
               containerPort: {{ .Values.server.containerPorts.metrics }}
               protocol: TCP
+            - name: radius
+              port: 1812
+              targetPort: 1812
+              protocol: UDP
           {{- with .Values.server.livenessProbe }}
           livenessProbe:
             {{ tpl (toYaml .) $ | nindent 12 }}
